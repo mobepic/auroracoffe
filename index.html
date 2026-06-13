@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AURORA Coffee Roasters — The Art of Single Origin</title>
+    <meta name="description" content="Experience the intense fusion of rich espresso and crystalline purity. Aurora Coffee Roasters — premium single origin coffee.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Inter:wght@300;400;500;600&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="preloader-inner">
+            <div class="preloader-bean">
+                <svg viewBox="0 0 100 130" class="bean-svg">
+                    <path d="M50 5C30 5 10 25 10 55C10 85 30 125 50 125C70 125 90 85 90 55C90 25 70 5 50 5Z" fill="#6B3A1F"/>
+                    <path d="M50 15C48 15 46 55 50 65C54 55 52 15 50 15Z" fill="#4A2512" stroke="#3A1B0E" stroke-width="1"/>
+                </svg>
+            </div>
+            <div class="preloader-text">
+                <span>A</span><span>U</span><span>R</span><span>O</span><span>R</span><span>A</span>
+            </div>
+            <div class="preloader-bar">
+                <div class="preloader-bar-fill"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Particle Canvas -->
+    <canvas id="particle-canvas"></canvas>
+
+    <!-- Cursor follower -->
+    <div id="cursor-glow"></div>
+
+    <!-- Navigation -->
+    <nav id="main-nav">
+        <div class="nav-container">
+            <div class="nav-logo" id="nav-logo">
+                <span class="logo-text">AUR<span class="logo-o">☕</span>RA</span>
+                <span class="logo-sub">COFFEE ROASTERS</span>
+            </div>
+            <div class="nav-links" id="nav-links">
+                <a href="#beans" class="nav-link" data-text="OUR BEANS">OUR BEANS</a>
+                <a href="#brew" class="nav-link" data-text="BREW GUIDES">BREW GUIDES</a>
+                <a href="#gallery" class="nav-link" data-text="SHOP">SHOP</a>
+                <a href="#about" class="nav-link" data-text="ABOUT">ABOUT</a>
+                <a href="#journal" class="nav-link" data-text="JOURNAL">JOURNAL</a>
+            </div>
+            <div class="nav-actions">
+                <button class="nav-icon" id="search-btn" aria-label="Search">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+                    </svg>
+                </button>
+                <button class="nav-icon cart-btn" id="cart-btn" aria-label="Cart">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/>
+                    </svg>
+                    <span class="cart-count">1</span>
+                </button>
+                <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobile-menu">
+        <div class="mobile-menu-inner">
+            <a href="#beans" class="mobile-link">OUR BEANS</a>
+            <a href="#brew" class="mobile-link">BREW GUIDES</a>
+            <a href="#gallery" class="mobile-link">SHOP</a>
+            <a href="#about" class="mobile-link">ABOUT</a>
+            <a href="#journal" class="mobile-link">JOURNAL</a>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main id="smooth-wrapper">
+        <div id="smooth-content">
+
+            <!-- HERO SECTION -->
+            <section id="hero" class="hero-section">
+                <div class="hero-bg-gradient"></div>
+                
+                <!-- Floating ambient beans -->
+                <div class="ambient-beans">
+                    <div class="ambient-bean ab-1"></div>
+                    <div class="ambient-bean ab-2"></div>
+                    <div class="ambient-bean ab-3"></div>
+                    <div class="ambient-bean ab-4"></div>
+                    <div class="ambient-bean ab-5"></div>
+                    <div class="ambient-bean ab-6"></div>
+                    <div class="ambient-bean ab-7"></div>
+                    <div class="ambient-bean ab-8"></div>
+                </div>
+
+                <!-- Coffee Bean (Exploding Object) -->
+                <div class="hero-bean-container" id="hero-bean">
+                    <img src="assets/coffee-bean-hero.png" alt="Coffee Bean" class="hero-bean-img" id="hero-bean-img">
+                    <div class="bean-glow"></div>
+                    <div class="bean-particles" id="bean-particles"></div>
+                </div>
+
+                <!-- Coffee Cup (Reveals after explosion) -->
+                <div class="hero-cup-container" id="hero-cup">
+                    <img src="assets/coffee-cup-splash.png" alt="Coffee Cup" class="hero-cup-img" id="hero-cup-img">
+                    <div class="cup-steam" id="cup-steam">
+                        <div class="steam-particle sp-1"></div>
+                        <div class="steam-particle sp-2"></div>
+                        <div class="steam-particle sp-3"></div>
+                    </div>
+                    <div class="splash-ring splash-ring-1"></div>
+                    <div class="splash-ring splash-ring-2"></div>
+                    <div class="splash-ring splash-ring-3"></div>
+                </div>
+
+                <!-- Hero Text Content -->
+                <div class="hero-content" id="hero-content">
+                    <h1 class="hero-title">
+                        <span class="title-line title-line-1">
+                            <span class="char-wrap"><span class="char" data-delay="0">A</span></span>
+                            <span class="char-wrap"><span class="char" data-delay="1">U</span></span>
+                            <span class="char-wrap"><span class="char" data-delay="2">R</span></span>
+                            <span class="char-wrap"><span class="char" data-delay="3">O</span></span>
+                            <span class="char-wrap"><span class="char" data-delay="4">R</span></span>
+                            <span class="char-wrap"><span class="char" data-delay="5">A</span></span>
+                        </span>
+                        <span class="title-line title-line-2">
+                            <span class="subtitle-text">THE ART OF SINGLE ORIGIN</span>
+                        </span>
+                    </h1>
+                    <p class="hero-desc" id="hero-desc">
+                        Experience the intense fusion of rich espresso and crystalline purity.
+                    </p>
+                    <a href="#beans" class="hero-cta" id="hero-cta">
+                        <span class="cta-text">EXPLORE THE COLLECTION</span>
+                        <span class="cta-line"></span>
+                    </a>
+                </div>
+
+                <!-- Scroll indicator -->
+                <div class="scroll-indicator" id="scroll-indicator">
+                    <div class="scroll-line"></div>
+                    <span class="scroll-text">SCROLL</span>
+                </div>
+            </section>
+
+            <!-- PARALLAX TRANSITION -->
+            <section class="parallax-transition" id="parallax-section">
+                <div class="parallax-layer parallax-back">
+                    <img src="assets/floating-beans.png" alt="Floating beans" class="parallax-img">
+                </div>
+                <div class="parallax-layer parallax-mid">
+                    <div class="parallax-text-block">
+                        <span class="parallax-label">EST. 2019</span>
+                        <h2 class="parallax-heading">Crafted with<br><em>Passion</em></h2>
+                    </div>
+                </div>
+                <div class="parallax-layer parallax-front">
+                    <div class="floating-bean-group">
+                        <div class="p-bean p-bean-1"></div>
+                        <div class="p-bean p-bean-2"></div>
+                        <div class="p-bean p-bean-3"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- BEANS / PRODUCTS SECTION -->
+            <section id="beans" class="beans-section">
+                <div class="section-container">
+                    <div class="section-header">
+                        <span class="section-label">OUR SELECTION</span>
+                        <h2 class="section-title">Single Origin<br><em>Masterpieces</em></h2>
+                        <div class="section-line"></div>
+                    </div>
+
+                    <!-- 3D Card Gallery -->
+                    <div class="beans-gallery" id="beans-gallery">
+                        <div class="bean-card" data-tilt>
+                            <div class="bean-card-inner">
+                                <div class="bean-card-img-wrap">
+                                    <img src="assets/latte-art.png" alt="Ethiopia Yirgacheffe" class="bean-card-img">
+                                    <div class="bean-card-overlay"></div>
+                                </div>
+                                <div class="bean-card-content">
+                                    <span class="bean-origin">ETHIOPIA</span>
+                                    <h3 class="bean-name">Yirgacheffe</h3>
+                                    <p class="bean-notes">Floral · Citrus · Honey</p>
+                                    <div class="bean-meta">
+                                        <span class="bean-roast">Light Roast</span>
+                                        <span class="bean-price">$24.00</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bean-card" data-tilt>
+                            <div class="bean-card-inner">
+                                <div class="bean-card-img-wrap">
+                                    <img src="assets/coffee-pour.png" alt="Colombia Huila" class="bean-card-img">
+                                    <div class="bean-card-overlay"></div>
+                                </div>
+                                <div class="bean-card-content">
+                                    <span class="bean-origin">COLOMBIA</span>
+                                    <h3 class="bean-name">Huila Reserve</h3>
+                                    <p class="bean-notes">Chocolate · Caramel · Nutty</p>
+                                    <div class="bean-meta">
+                                        <span class="bean-roast">Medium Roast</span>
+                                        <span class="bean-price">$22.00</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bean-card" data-tilt>
+                            <div class="bean-card-inner">
+                                <div class="bean-card-img-wrap">
+                                    <img src="assets/espresso-shot.png" alt="Sumatra Mandheling" class="bean-card-img">
+                                    <div class="bean-card-overlay"></div>
+                                </div>
+                                <div class="bean-card-content">
+                                    <span class="bean-origin">SUMATRA</span>
+                                    <h3 class="bean-name">Mandheling</h3>
+                                    <p class="bean-notes">Earthy · Spice · Dark Cocoa</p>
+                                    <div class="bean-meta">
+                                        <span class="bean-roast">Dark Roast</span>
+                                        <span class="bean-price">$26.00</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- BREW GUIDES - HORIZONTAL SCROLL -->
+            <section id="brew" class="brew-section">
+                <div class="brew-header">
+                    <span class="section-label">BREW GUIDES</span>
+                    <h2 class="section-title">Master the<br><em>Perfect Cup</em></h2>
+                </div>
+                <div class="horizontal-scroll-container" id="horizontal-scroll">
+                    <div class="horizontal-track" id="horizontal-track">
+                        <div class="brew-card">
+                            <div class="brew-card-number">01</div>
+                            <div class="brew-card-visual">
+                                <div class="brew-icon">
+                                    <svg viewBox="0 0 80 80" fill="none" stroke="currentColor" stroke-width="1.5">
+                                        <path d="M20 25h40v35a10 10 0 01-10 10H30a10 10 0 01-10-10V25z"/>
+                                        <path d="M60 30h8a6 6 0 010 12h-8"/>
+                                        <path d="M30 15c0-5 5-10 10-10s10 5 10 10"/>
+                                        <path d="M35 10c2-4 6-4 8 0" opacity="0.5"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <h3 class="brew-card-title">Pour Over</h3>
+                            <p class="brew-card-desc">A clean, nuanced cup that highlights the delicate flavors of single origin beans.</p>
+                            <div class="brew-card-specs">
+                                <div class="spec"><span>Grind</span><span>Medium-Fine</span></div>
+                                <div class="spec"><span>Ratio</span><span>1:15</span></div>
+                                <div class="spec"><span>Time</span><span>3:30</span></div>
+                            </div>
+                        </div>
+                        <div class="brew-card">
+                            <div class="brew-card-number">02</div>
+                            <div class="brew-card-visual">
+                                <div class="brew-icon">
+                                    <svg viewBox="0 0 80 80" fill="none" stroke="currentColor" stroke-width="1.5">
+                                        <rect x="20" y="30" width="40" height="35" rx="4"/>
+                                        <path d="M25 30V20a15 15 0 0130 0v10"/>
+                                        <circle cx="40" cy="47" r="8"/>
+                                        <path d="M40 43v8M36 47h8"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <h3 class="brew-card-title">French Press</h3>
+                            <p class="brew-card-desc">Full-bodied and rich, letting the coffee oils create a luxurious mouthfeel.</p>
+                            <div class="brew-card-specs">
+                                <div class="spec"><span>Grind</span><span>Coarse</span></div>
+                                <div class="spec"><span>Ratio</span><span>1:12</span></div>
+                                <div class="spec"><span>Time</span><span>4:00</span></div>
+                            </div>
+                        </div>
+                        <div class="brew-card">
+                            <div class="brew-card-number">03</div>
+                            <div class="brew-card-visual">
+                                <div class="brew-icon">
+                                    <svg viewBox="0 0 80 80" fill="none" stroke="currentColor" stroke-width="1.5">
+                                        <path d="M25 65h30l5-35H20l5 35z"/>
+                                        <path d="M20 30l20-15 20 15"/>
+                                        <circle cx="40" cy="48" r="6"/>
+                                        <path d="M37 48h6"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <h3 class="brew-card-title">Chemex</h3>
+                            <p class="brew-card-desc">Bright and clean with no bitterness. The thick filter removes oils for purity.</p>
+                            <div class="brew-card-specs">
+                                <div class="spec"><span>Grind</span><span>Medium</span></div>
+                                <div class="spec"><span>Ratio</span><span>1:16</span></div>
+                                <div class="spec"><span>Time</span><span>4:30</span></div>
+                            </div>
+                        </div>
+                        <div class="brew-card">
+                            <div class="brew-card-number">04</div>
+                            <div class="brew-card-visual">
+                                <div class="brew-icon">
+                                    <svg viewBox="0 0 80 80" fill="none" stroke="currentColor" stroke-width="1.5">
+                                        <rect x="15" y="25" width="50" height="40" rx="6"/>
+                                        <path d="M30 25V18a10 10 0 0120 0v7"/>
+                                        <circle cx="40" cy="45" r="10"/>
+                                        <path d="M40 39v12"/>
+                                        <path d="M34 45h12"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <h3 class="brew-card-title">Espresso</h3>
+                            <p class="brew-card-desc">Concentrated intensity. The foundation of lattes, cappuccinos, and pure espresso shots.</p>
+                            <div class="brew-card-specs">
+                                <div class="spec"><span>Grind</span><span>Fine</span></div>
+                                <div class="spec"><span>Ratio</span><span>1:2</span></div>
+                                <div class="spec"><span>Time</span><span>0:28</span></div>
+                            </div>
+                        </div>
+                        <div class="brew-card">
+                            <div class="brew-card-number">05</div>
+                            <div class="brew-card-visual">
+                                <div class="brew-icon">
+                                    <svg viewBox="0 0 80 80" fill="none" stroke="currentColor" stroke-width="1.5">
+                                        <path d="M25 20h30v45a8 8 0 01-8 8H33a8 8 0 01-8-8V20z"/>
+                                        <path d="M25 45h30"/>
+                                        <path d="M32 10v10M40 8v12M48 10v10"/>
+                                        <rect x="30" y="50" width="20" height="3" rx="1" fill="currentColor" opacity="0.3"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <h3 class="brew-card-title">Cold Brew</h3>
+                            <p class="brew-card-desc">Smooth, naturally sweet, and incredibly refreshing. Steeped for 18 hours.</p>
+                            <div class="brew-card-specs">
+                                <div class="spec"><span>Grind</span><span>Extra Coarse</span></div>
+                                <div class="spec"><span>Ratio</span><span>1:8</span></div>
+                                <div class="spec"><span>Time</span><span>18:00h</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="scroll-progress-bar">
+                    <div class="scroll-progress-fill" id="brew-progress"></div>
+                </div>
+            </section>
+
+            <!-- ABOUT SECTION -->
+            <section id="about" class="about-section">
+                <div class="about-container">
+                    <div class="about-left">
+                        <div class="about-img-stack">
+                            <div class="about-img-wrap about-img-1">
+                                <img src="assets/coffee-pour.png" alt="Brewing Process" class="about-img">
+                            </div>
+                            <div class="about-img-wrap about-img-2">
+                                <img src="assets/latte-art.png" alt="Latte Art" class="about-img">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="about-right">
+                        <span class="section-label">OUR STORY</span>
+                        <h2 class="section-title about-title">From Seed<br>to <em>Soul</em></h2>
+                        <div class="about-text">
+                            <p>At Aurora, we believe every cup tells a story. Our journey begins at origin — working directly with smallholder farmers across Ethiopia, Colombia, and Sumatra to source the world's finest green coffee.</p>
+                            <p>Each bean is roasted in small batches at our Brooklyn roastery, where our master roasters coax out the unique character of every origin. The result? Coffee that transcends the ordinary.</p>
+                        </div>
+                        <div class="about-stats">
+                            <div class="stat">
+                                <span class="stat-number" data-count="12">0</span>
+                                <span class="stat-label">Origins</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-number" data-count="847">0</span>
+                                <span class="stat-label">Farmers</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-number" data-count="5">0</span>
+                                <span class="stat-label">Years</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- JOURNAL / CTA SECTION -->
+            <section id="journal" class="journal-section">
+                <div class="journal-container">
+                    <div class="journal-header">
+                        <span class="section-label">FROM THE JOURNAL</span>
+                        <h2 class="section-title">Latest<br><em>Stories</em></h2>
+                    </div>
+                    <div class="journal-grid">
+                        <article class="journal-card journal-card-large">
+                            <div class="journal-card-img-wrap">
+                                <img src="assets/espresso-shot.png" alt="The Art of Espresso" class="journal-card-img">
+                            </div>
+                            <div class="journal-card-content">
+                                <span class="journal-date">June 10, 2026</span>
+                                <h3 class="journal-card-title">The Art of the Perfect Espresso Shot</h3>
+                                <p class="journal-excerpt">Discover the variables that transform good espresso into an extraordinary experience.</p>
+                                <a href="#" class="journal-read-more">Read More →</a>
+                            </div>
+                        </article>
+                        <article class="journal-card">
+                            <div class="journal-card-img-wrap">
+                                <img src="assets/floating-beans.png" alt="Bean Selection" class="journal-card-img">
+                            </div>
+                            <div class="journal-card-content">
+                                <span class="journal-date">June 5, 2026</span>
+                                <h3 class="journal-card-title">Understanding Coffee Varietals</h3>
+                                <a href="#" class="journal-read-more">Read More →</a>
+                            </div>
+                        </article>
+                        <article class="journal-card">
+                            <div class="journal-card-img-wrap">
+                                <img src="assets/coffee-pour.png" alt="Pour Over Guide" class="journal-card-img">
+                            </div>
+                            <div class="journal-card-content">
+                                <span class="journal-date">May 28, 2026</span>
+                                <h3 class="journal-card-title">Pour Over: A Meditative Ritual</h3>
+                                <a href="#" class="journal-read-more">Read More →</a>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </section>
+
+            <!-- FOOTER -->
+            <footer class="site-footer">
+                <div class="footer-container">
+                    <div class="footer-top">
+                        <div class="footer-brand">
+                            <span class="footer-logo">AUR☕RA</span>
+                            <p class="footer-tagline">The Art of Single Origin</p>
+                        </div>
+                        <div class="footer-cols">
+                            <div class="footer-col">
+                                <h4>Explore</h4>
+                                <a href="#">Our Beans</a>
+                                <a href="#">Brew Guides</a>
+                                <a href="#">Shop</a>
+                                <a href="#">Subscriptions</a>
+                            </div>
+                            <div class="footer-col">
+                                <h4>Company</h4>
+                                <a href="#">Our Story</a>
+                                <a href="#">Roastery</a>
+                                <a href="#">Careers</a>
+                                <a href="#">Press</a>
+                            </div>
+                            <div class="footer-col">
+                                <h4>Connect</h4>
+                                <a href="#">Instagram</a>
+                                <a href="#">Twitter</a>
+                                <a href="#">Newsletter</a>
+                                <a href="#">Contact</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="footer-bottom">
+                        <p>&copy; 2026 Aurora Coffee Roasters. All rights reserved.</p>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </main>
+
+    <!-- GSAP & ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
